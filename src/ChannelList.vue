@@ -2,10 +2,11 @@
   <div class="channel-list">
     <table class="" style="padding-top: 5px">
       <tbody>
-        <tr v-for="user in channels" :key="user.id">
+        <tr v-for="channel in channels" :key="channel.id">
           <b-button >
-            <td style="text-align: center;"><img :src="user.imageUrl" class="img-msg"/></td>
-            <td class="channel-element">{{user.name}}</td>
+            <td style="text-align: center;"><img :src="channel.titleImageUrl" class="img-msg"/></td>
+            <td class="channel-element">{{channel.title}}</td>
+            <td class="channel-element"> Nuevos mensajes:{{channel.newMessagesCount}}</td>
           </b-button>
         </tr>
       </tbody>

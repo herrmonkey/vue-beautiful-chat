@@ -120,7 +120,35 @@
     },
     data() {
       return {
-        channels: channelsProfile,
+        channels: [
+          {
+            id:1,
+            title:'HYQ724',
+            titleImageUrl:
+                'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
+            newMessagesCount: 0,
+            messageList: messageHistory,
+            participants: chatParticipants,
+          },
+          {
+            id:2,
+            title:'KHR94E',
+            titleImageUrl:
+                'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
+            newMessagesCount: 0,
+            messageList: messageHistory,
+            participants: chatParticipants,
+          },
+          {
+            id:3,
+            title:'JCS062',
+            titleImageUrl:
+                'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
+            newMessagesCount: 0,
+            messageList: messageHistory,
+            participants: chatParticipants,
+          },
+        ],
         participants: chatParticipants,
         titleImageUrl:
                 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
