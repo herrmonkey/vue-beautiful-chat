@@ -124,7 +124,7 @@
       },
       placeholder: {
         type: String,
-        default: 'Escriba un mensaje...'
+        default: 'Write a message...'
       },
       showTypingIndicator: {
         type: String,
