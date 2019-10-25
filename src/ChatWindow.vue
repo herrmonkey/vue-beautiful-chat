@@ -13,20 +13,21 @@
         </slot>
       </template>
     </Header>
-    <template v-if="showChannelList">
+    <template v-if="!channelid">
       <ChannelList
               :channels="channels"
+              @setChannelId="setChannelId"
       />
     </template>
-    <template v-if="!showChannelList">
+    <template v-if="channelid">
       <UserList
               v-if="showUserList"
               :participants="participants"
       />
       <MessageList
               v-if="!showUserList"
-              :messages="messages"
-              :participants="participants"
+              :messages="channels[channelid].messageList"
+              :participants="channels[channelid].participants"
               :showTypingIndicator="showTypingIndicator"
               :colors="colors"
               :alwaysScrollToBottom="alwaysScrollToBottom"
@@ -149,7 +150,8 @@
     data() {
       return {
         showUserList: false,
-        showChannelList: true
+        showChannelList: true,
+        channelid: null
       }
     },
     computed: {
@@ -168,6 +170,10 @@
       },
       getSuggestions(){
         return this.messages.length > 0 ? this.messages[this.messages.length - 1].suggestions : []
+      },
+      setChannelId(channel_id){
+        this.showChannelList = false
+        this.channelid = channel_id
       }
     }
   }

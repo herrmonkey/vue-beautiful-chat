@@ -3,11 +3,11 @@
     <table class="" style="padding-top: 5px">
       <tbody>
         <tr v-for="channel in channels" :key="channel.id">
-          <b-button >
+          <button @click="setChannelId(channel.id)">
             <td style="text-align: center;"><img :src="channel.titleImageUrl" class="img-msg"/></td>
             <td class="channel-element">{{channel.title}}</td>
             <td class="channel-element"> Nuevos mensajes:{{channel.newMessagesCount}}</td>
-          </b-button>
+          </button>
         </tr>
       </tbody>
   </table>
@@ -19,6 +19,11 @@ export default {
     channels: {
       type: Array,
       required: true
+    }
+  },
+  methods:{
+    setChannelId(channel_id){
+      this.$emit('setChannelId',channel_id)
     }
   }
 }

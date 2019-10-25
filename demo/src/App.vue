@@ -147,7 +147,7 @@
             newMessagesCount: 0,
             messageList: messageHistory,
             participants: chatParticipants,
-          },
+          }
         ],
         participants: chatParticipants,
         titleImageUrl:
