@@ -1,7 +1,7 @@
 <template>
   <div class="sc-chat-window" :class="{opened: isOpen, closed: !isOpen}">
     <Header
-            :title="title"
+            :title="chatWindowTitle"
             :imageUrl="titleImageUrl"
             :onClose="onClose"
             :onBack="onBack"
@@ -56,7 +56,7 @@
       <UserInput
               v-if="chatWindowState==2"
               :showEmoji="showEmoji"
-              :onSubmit="onUserInputSubmit"
+              :onSubmit="_onUserInputSubmit"
               :suggestions="getSuggestions()"
               :showFile="showFile"
               :placeholder="placeholder"
@@ -160,17 +160,34 @@
       messages() {
         let messages = this.channels[this.channelid].messageList
         return messages
+      },
+      chatWindowTitle() {
+        if (this.title !== '') {
+          if(this.chatWindowState==1){
+            return this.title
+          }else {
+            if(this.channels[this.channelid].title !== ''){
+              return this.channels[this.channelid].title
+            }else{
+              return 'Beautiful Chat'    
+            }
+          }
+        }else{
+          return 'Beautiful Chat'
+        } 
       }
     },
     methods: {
       onShowUsers() {
         if(this.chatWindowState==2){
           this.chatWindowState=3
-          console.log(this.channels[this.channelid].participants)
         }else if(this.chatWindowState==3){
           this.chatWindowState=2
         }
-
+      },
+      _onUserInputSubmit(event) {
+        event['channel_id']=this.channels[this.channelid].id
+        this.onUserInputSubmit(event)
       },
       handleChannelListToggle(showChannelList) {
         this.showChannelList = showChannelList
@@ -179,8 +196,8 @@
         return this.messages.length > 0 ? this.messages[this.messages.length - 1].suggestions : []
       },
       setChannelId(channel_id){
-        this.chatWindowState = 2
         this.channelid = channel_id
+        this.chatWindowState = 2
       },
       onBack(){
         if(this.chatWindowState>1){

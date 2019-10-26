@@ -19,6 +19,7 @@
             :showEmoji="true"
             :showFile="true"
             :showTypingIndicator="showTypingIndicator"
+            :title="'Chat channels'"
             :titleImageUrl="titleImageUrl"
             @onType="handleOnType"
             @edit="editMessage"
@@ -104,6 +105,7 @@
 
 <script>
   import messageHistory from './messageHistory'
+  import messageHistory2 from './messageHistory2'
   import channelsProfile from './channelProfile'
   import chatParticipants from './chatProfiles'
   import Header from './Header.vue'
@@ -136,7 +138,7 @@
             titleImageUrl:
                 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
             newMessagesCount: 0,
-            messageList: messageHistory,
+            messageList: messageHistory2,
             participants: chatParticipants,
           },
           {
@@ -188,7 +190,13 @@
                         : ''
       },
       onMessageWasSent(message) {
-        this.messageList = [...this.messageList, Object.assign({}, message, {id: Math.random()})]
+        for (var i in this.channels){
+          if(this.channels[i].id==message.channel_id){
+            delete(this.channels[i].channel_id)
+            this.channels[i].messageList = [...this.channels[i].messageList, Object.assign({}, message, {id: Math.random()})]
+            break;
+          }
+        }
       },
       openChat() {
         this.isChatOpen = true

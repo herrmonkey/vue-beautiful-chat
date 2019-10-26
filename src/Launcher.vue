@@ -12,7 +12,7 @@
             :onUserInputSubmit="onMessageWasSent"
             :channels="channels"
             :participants="participants"
-            :title="chatWindowTitle"
+            :title="title"
             :titleImageUrl="titleImageUrl"
             :isOpen="isOpen"
             :onClose="close"
@@ -199,19 +199,6 @@
       }
     },
     computed: {
-      chatWindowTitle() {
-        if (this.title !== '') {
-          return this.title
-        }
-
-        if (this.participants.length === 0) {
-          return 'You'
-        } else if (this.participants.length > 1) {
-          return 'You, ' + this.participants[0].name + ' & others'
-        } else {
-          return 'You & ' + this.participants[0].name
-        }
-      }
     },
     components: {
       ChatWindow
