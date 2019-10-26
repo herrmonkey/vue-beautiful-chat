@@ -4,28 +4,29 @@
             :title="title"
             :imageUrl="titleImageUrl"
             :onClose="onClose"
+            :onBack="onBack"
             :colors="colors"
-            :disableUserListToggle="disableUserListToggle"
-            @userList="handleUserListToggle"
+            :chatWindowState="chatWindowState"
+            :onShowUsers="onShowUsers"
     >
       <template>
         <slot name="header">
         </slot>
       </template>
     </Header>
-    <template v-if="!channelid">
+    <template v-if="chatWindowState==1">
       <ChannelList
               :channels="channels"
               @setChannelId="setChannelId"
       />
     </template>
-    <template v-if="channelid">
+    <template v-if="chatWindowState>1">
       <UserList
-              v-if="showUserList"
-              :participants="participants"
+              v-if="chatWindowState==3"
+              :participants="channels[channelid].participants"
       />
       <MessageList
-              v-if="!showUserList"
+              v-if="chatWindowState==2"
               :messages="channels[channelid].messageList"
               :participants="channels[channelid].participants"
               :showTypingIndicator="showTypingIndicator"
@@ -53,7 +54,7 @@
         </template>
       </MessageList>
       <UserInput
-              v-if="!showUserList"
+              v-if="chatWindowState==2"
               :showEmoji="showEmoji"
               :onSubmit="onUserInputSubmit"
               :suggestions="getSuggestions()"
@@ -151,19 +152,25 @@
       return {
         showUserList: false,
         showChannelList: true,
-        channelid: null
+        channelid: null,
+        chatWindowState: 1
       }
     },
     computed: {
       messages() {
-        let messages = this.messageList
-
+        let messages = this.channels[this.channelid].messageList
         return messages
       }
     },
     methods: {
-      handleUserListToggle(showUserList) {
-        this.showUserList = showUserList
+      onShowUsers() {
+        if(this.chatWindowState==2){
+          this.chatWindowState=3
+          console.log(this.channels[this.channelid].participants)
+        }else if(this.chatWindowState==3){
+          this.chatWindowState=2
+        }
+
       },
       handleChannelListToggle(showChannelList) {
         this.showChannelList = showChannelList
@@ -172,8 +179,13 @@
         return this.messages.length > 0 ? this.messages[this.messages.length - 1].suggestions : []
       },
       setChannelId(channel_id){
-        this.showChannelList = false
+        this.chatWindowState = 2
         this.channelid = channel_id
+      },
+      onBack(){
+        if(this.chatWindowState>1){
+          this.chatWindowState-=1
+        }
       }
     }
   }

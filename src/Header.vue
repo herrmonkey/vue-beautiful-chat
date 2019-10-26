@@ -1,11 +1,11 @@
 <template>
   <div class="sc-header" :style="{background: colors.header.bg, color: colors.header.text}">
-    <div class="sc-header--back-button" @click="onClose">
+    <div v-if="chatWindowState>1" class="sc-header--back-button" @click="onBack">
       <img :src="icons.back.img" :alt="icons.back.name" />
     </div>
     <slot>
       <img class="sc-header--img" :src="imageUrl" alt="" v-if="imageUrl" />
-      <div v-if="!disableUserListToggle" class="sc-header--title enabled" @click="toggleUserList"> {{title}} </div>
+      <div v-if="chatWindowState>1" class="sc-header--title enabled" @click="onShowUsers"> {{title}} </div>
       <div v-else class="sc-header--title"> {{title}} </div>
     </slot>
       <div class="sc-header--close-button" @click="onClose">
@@ -46,20 +46,24 @@ export default {
       type: Function,
       required: true
     },
+    onBack: {
+      type: Function,
+      required: true
+    },
+    onShowUsers: {
+      type: Function,
+      required: true
+    },
     colors: {
       type: Object,
       required: true
     },
-    disableUserListToggle: {
-      type: Boolean,
-      default: false
+    chatWindowState: {
+      default: 1
     }
   },
   methods: {
-    toggleUserList() {
-      this.inUserList = !this.inUserList
-      this.$emit("userList", this.inUserList)
-    }
+    
   },
   data() {
     return {
