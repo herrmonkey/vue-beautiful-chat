@@ -19,7 +19,10 @@
         :message="message" 
         :messageColors="determineMessageColors()" 
         :messageStyling="messageStyling"
-        @remove="$emit('remove')">
+        @remove="$emit('remove')"
+        :acceptEdit="acceptEdit"
+        :acceptRemove="acceptRemove"
+        >
           <template v-slot:default="scopedProps">
             <slot name="text-message-body" :message="scopedProps.message" :messageText="scopedProps.messageText" :messageColors="scopedProps.messageColors" :me="scopedProps.me">
             </slot>
@@ -66,6 +69,14 @@ export default {
     message: {
       type: Object,
       required: true
+    },
+    acceptEdit: {
+      type: Boolean,
+      default: true
+    },
+    acceptRemove: {
+      type: Boolean,
+      default: true
     },
     colors: {
       type: Object,

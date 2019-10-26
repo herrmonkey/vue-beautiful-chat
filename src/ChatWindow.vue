@@ -30,6 +30,8 @@
               :messages="channels[channelid].messageList"
               :participants="channels[channelid].participants"
               :showTypingIndicator="showTypingIndicator"
+              :acceptEdit="acceptEdit"
+              :acceptRemove="acceptRemove"
               :colors="colors"
               :alwaysScrollToBottom="alwaysScrollToBottom"
               :messageStyling="messageStyling"
@@ -90,6 +92,14 @@
       showFile: {
         type: Boolean,
         default: false
+      },
+      acceptEdit: {
+        type: Boolean,
+        default: true
+      },
+      acceptRemove: {
+        type: Boolean,
+        default: true
       },
       channels: {
         type: Array,

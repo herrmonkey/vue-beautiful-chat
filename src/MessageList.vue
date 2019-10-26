@@ -1,6 +1,6 @@
 <template>
   <div class="sc-message-list" ref="scrollList" :style="{backgroundColor: colors.messageList.bg}" @scroll="handleScroll">
-    <Message v-for="(message, idx) in messages" :message="message" :user="profile(message.author)" :key="idx" :colors="colors" :messageStyling="messageStyling" @remove="$emit('remove', message)">
+    <Message v-for="(message, idx) in messages" :message="message" :user="profile(message.author)" :key="idx" :colors="colors" :messageStyling="messageStyling" @remove="$emit('remove', message)" :acceptEdit="acceptEdit" :acceptRemove="acceptRemove">
       <template v-slot:user-avatar="scopedProps">
         <slot name="user-avatar" :user="scopedProps.user" :message="scopedProps.message">
         </slot>
@@ -33,6 +33,14 @@ export default {
     messages: {
       type: Array,
       required: true
+    },
+    acceptEdit: {
+      type: Boolean,
+      default: true
+    },
+    acceptRemove: {
+      type: Boolean,
+      default: true
     },
     showTypingIndicator: {
       type: String,

@@ -11,13 +11,14 @@
             :messageList="messageList"
             :onUserInputSubmit="onMessageWasSent"
             :channels="channels"
-            :participants="participants"
             :title="title"
             :titleImageUrl="titleImageUrl"
             :isOpen="isOpen"
             :onClose="close"
             :showEmoji="showEmoji"
             :showFile="showFile"
+            :acceptEdit="acceptEdit"
+            :acceptRemove="acceptRemove"
             :placeholder="placeholder"
             :showTypingIndicator="showTypingIndicator"
             :colors="colors"
@@ -80,6 +81,14 @@
         type: Boolean,
         default: false
       },
+      acceptEdit: {
+        type: Boolean,
+        default: true
+      },
+      acceptRemove: {
+        type: Boolean,
+        default: true
+      },
       isOpen: {
         type: Boolean,
         required: true
@@ -100,10 +109,6 @@
         type: Array,
         required: true
       },
-      participants: {
-        type: Array,
-        required: true
-      },
       title: {
         type: String,
         default: () => ''
@@ -116,17 +121,9 @@
         type: Function,
         required: true
       },
-      messageList: {
-        type: Array,
-        default: () => []
-      },
-      newMessagesCount: {
-        type: Number,
-        default: () => 0
-      },
       placeholder: {
         type: String,
-        default: 'Escriba un mensaje...'
+        default: 'Write a message...'
       },
       showTypingIndicator: {
         type: String,

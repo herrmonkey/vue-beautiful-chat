@@ -11,13 +11,13 @@
             :isOpen="isChatOpen"
             :messageList="messageList"
             :messageStyling="messageStyling"
-            :newMessagesCount="newMessagesCount"
             :onMessageWasSent="onMessageWasSent"
             :open="openChat"
             :channels="channels"
-            :participants="participants"
             :showEmoji="true"
             :showFile="true"
+            :acceptEdit="true"
+            :acceptRemove="true"
             :showTypingIndicator="showTypingIndicator"
             :title="'Chat channels'"
             :titleImageUrl="titleImageUrl"
@@ -154,8 +154,6 @@
         participants: chatParticipants,
         titleImageUrl:
                 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
-        messageList: messageHistory,
-        newMessagesCount: 0,
         isChatOpen: false,
         showTypingIndicator: '',
         colors: null,
