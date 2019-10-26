@@ -1,5 +1,8 @@
 <template>
   <div class="sc-header" :style="{background: colors.header.bg, color: colors.header.text}">
+    <div class="sc-header--back-button" @click="onClose">
+      <img :src="icons.back.img" :alt="icons.back.name" />
+    </div>
     <slot>
       <img class="sc-header--img" :src="imageUrl" alt="" v-if="imageUrl" />
       <div v-if="!disableUserListToggle" class="sc-header--title enabled" @click="toggleUserList"> {{title}} </div>
@@ -13,6 +16,7 @@
 <script>
 
 import CloseIcon from './assets/close-icon-big.png'
+import BackIcon from './assets/arrow-back.svg'
 
 export default {
   props: {
@@ -22,6 +26,10 @@ export default {
         return {
           close:{
             img: CloseIcon,
+            name: 'default',
+          },
+          back:{
+            img: BackIcon,
             name: 'default',
           },
         }
@@ -93,6 +101,24 @@ export default {
 
 .sc-header--title.enabled:hover {
   box-shadow: 0px 2px 5px rgba(0.2, 0.2, 0.5, .1);
+}
+
+.sc-header--back-button {
+  width: 40px;
+  align-self: center;
+  height: 40px;
+  margin-right: 10px;
+  box-sizing: border-box;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-left: auto;
+}
+
+.sc-header--back-button img {
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+  box-sizing: border-box;
 }
 
 .sc-header--close-button {
