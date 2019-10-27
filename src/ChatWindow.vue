@@ -30,8 +30,6 @@
               :messages="channels[channelid].messageList"
               :participants="channels[channelid].participants"
               :showTypingIndicator="showTypingIndicator"
-              :acceptEdit="acceptEdit"
-              :acceptRemove="acceptRemove"
               :colors="colors"
               :alwaysScrollToBottom="alwaysScrollToBottom"
               :messageStyling="messageStyling"
@@ -58,6 +56,8 @@
       <UserInput
               v-if="chatWindowState==2"
               :showEmoji="showEmoji"
+              :acceptEdit="acceptEdit"
+              :acceptRemove="acceptRemove"
               :onSubmit="_onUserInputSubmit"
               :suggestions="getSuggestions()"
               :showFile="showFile"
@@ -122,6 +122,10 @@
         required: true
       },
       onClose: {
+        type: Function,
+        required: true
+      },
+      onChannelSelect: {
         type: Function,
         required: true
       },
@@ -208,6 +212,7 @@
       setChannelId(channel_id){
         this.channelid = channel_id
         this.chatWindowState = 2
+        this.onChannelSelect(this.channels[this.channelid])
       },
       onBack(){
         if(this.chatWindowState>1){

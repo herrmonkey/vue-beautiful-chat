@@ -15,6 +15,7 @@
             :titleImageUrl="titleImageUrl"
             :isOpen="isOpen"
             :onClose="close"
+            :onChannelSelect="onChannelSelect"
             :showEmoji="showEmoji"
             :showFile="showFile"
             :acceptEdit="acceptEdit"
@@ -94,6 +95,10 @@
         required: true
       },
       open: {
+        type: Function,
+        required: true
+      },
+      onChannelSelect: {
         type: Function,
         required: true
       },

@@ -13,6 +13,7 @@
             :messageStyling="messageStyling"
             :onMessageWasSent="onMessageWasSent"
             :open="openChat"
+            :onChannelSelect="onChannelSelect"
             :channels="channels"
             :showEmoji="true"
             :showFile="true"
@@ -161,7 +162,8 @@
         chosenColor: null,
         alwaysScrollToBottom: true,
         messageStyling: true,
-        userIsTyping: false
+        userIsTyping: false,
+        selectedChannel:null
       }
     },
     created() {
@@ -202,6 +204,9 @@
       },
       closeChat() {
         this.isChatOpen = false
+      },
+      onChannelSelect(channel){
+        this.selectedChannel=channel
       },
       setColor(color) {
         this.colors = this.availableColors[color]
