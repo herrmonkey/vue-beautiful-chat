@@ -2,13 +2,12 @@
   <div>
     <div class="sc-launcher" :class="{opened: isOpen}" @click.prevent="isOpen ? close() : openAndFocus()" :style="{backgroundColor: colors.launcher.bg}">
       <div v-if="newMessagesCount > 0 && !isOpen" class="sc-new-messsages-count">
-        {{newMessagesCount}}
+        {{|}}
       </div>
       <img v-if="isOpen" class="sc-closed-icon" :src="icons.close.img"  :alt="icons.close.name" />
       <img v-else class="sc-open-icon" :src="icons.open.img"  :alt="icons.open.name" />
     </div>
     <ChatWindow
-            :messageList="messageList"
             :onUserInputSubmit="onMessageWasSent"
             :channels="channels"
             :title="title"
@@ -201,6 +200,13 @@
       }
     },
     computed: {
+      newMessagesCount() {
+        var unreadMsg = 0
+        for(var i in this.channels){
+          unreadMsg += this.channels[i].newMessagesCount
+        }
+        return unreadMsg
+      }
     },
     components: {
       ChatWindow

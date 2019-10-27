@@ -128,7 +128,7 @@
             title:'HYQ724',
             titleImageUrl:
                 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
-            newMessagesCount: 0,
+            newMessagesCount: 2,
             messageList: messageHistory,
             participants: chatParticipants,
           },
@@ -137,7 +137,7 @@
             title:'KHR94E',
             titleImageUrl:
                 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
-            newMessagesCount: 0,
+            newMessagesCount: 4,
             messageList: messageHistory2,
             participants: chatParticipants,
           },
@@ -171,9 +171,6 @@
     methods: {
       sendMessage(text) {
         if (text.length > 0) {
-          this.newMessagesCount = this.isChatOpen
-                  ? this.newMessagesCount
-                  : this.newMessagesCount + 1
           this.onMessageWasSent({
             author: 'support',
             type: 'text',
@@ -199,7 +196,6 @@
       },
       openChat() {
         this.isChatOpen = true
-        this.newMessagesCount = 0
       },
       closeChat() {
         this.isChatOpen = false
