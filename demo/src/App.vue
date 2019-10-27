@@ -9,7 +9,6 @@
             :close="closeChat"
             :colors="colors"
             :isOpen="isChatOpen"
-            :messageList="messageList"
             :messageStyling="messageStyling"
             :onMessageWasSent="onMessageWasSent"
             :open="openChat"

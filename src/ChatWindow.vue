@@ -105,10 +105,6 @@
         type: Array,
         required: true
       },
-      participants: {
-        type: Array,
-        required: true
-      },
       title: {
         type: String,
         required: true
@@ -128,10 +124,6 @@
       onChannelSelect: {
         type: Function,
         required: true
-      },
-      messageList: {
-        type: Array,
-        default: () => []
       },
       isOpen: {
         type: Boolean,
