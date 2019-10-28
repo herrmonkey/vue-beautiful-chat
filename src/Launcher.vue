@@ -15,6 +15,7 @@
             :isOpen="isOpen"
             :onClose="close"
             :onChannelSelect="onChannelSelect"
+            :onChannelUnselect="onChannelUnselect"
             :showEmoji="showEmoji"
             :showFile="showFile"
             :acceptEdit="acceptEdit"
@@ -98,6 +99,10 @@
         required: true
       },
       onChannelSelect: {
+        type: Function,
+        required: true
+      },
+      onChannelUnselect: {
         type: Function,
         required: true
       },

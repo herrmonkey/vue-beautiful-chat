@@ -125,6 +125,10 @@
         type: Function,
         required: true
       },
+      onChannelUnselect: {
+        type: Function,
+        required: true
+      },
       isOpen: {
         type: Boolean,
         default: () => false
@@ -209,6 +213,9 @@
       onBack(){
         if(this.chatWindowState>1){
           this.chatWindowState-=1
+        }
+        if(this.chatWindowState==1){
+          this.onChannelUnselect()
         }
       }
     }

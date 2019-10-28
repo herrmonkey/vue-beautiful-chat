@@ -13,6 +13,7 @@
             :onMessageWasSent="onMessageWasSent"
             :open="openChat"
             :onChannelSelect="onChannelSelect"
+            :onChannelUnselect="onChannelUnselect"
             :channels="channels"
             :showEmoji="true"
             :showFile="true"
@@ -202,6 +203,9 @@
       },
       onChannelSelect(channel){
         this.selectedChannel=channel
+      },
+      onChannelUnselect(){
+        console.log('not channel')
       },
       setColor(color) {
         this.colors = this.availableColors[color]
