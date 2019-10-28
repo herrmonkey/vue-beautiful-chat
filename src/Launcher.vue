@@ -2,7 +2,7 @@
   <div>
     <div class="sc-launcher" :class="{opened: isOpen}" @click.prevent="isOpen ? close() : openAndFocus()" :style="{backgroundColor: colors.launcher.bg}">
       <div v-if="newMessagesCount > 0 && !isOpen" class="sc-new-messsages-count">
-        {{|}}
+        {{newMessagesCount}}
       </div>
       <img v-if="isOpen" class="sc-closed-icon" :src="icons.close.img"  :alt="icons.close.name" />
       <img v-else class="sc-open-icon" :src="icons.open.img"  :alt="icons.open.name" />
@@ -124,6 +124,10 @@
       onMessageWasSent: {
         type: Function,
         required: true
+      },
+      newMessagesCount: {
+        type: Number,
+        default: () => 0
       },
       placeholder: {
         type: String,
