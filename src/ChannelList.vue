@@ -3,7 +3,7 @@
     <table class="" style="padding-top: 5px">
       <tbody>
         <tr v-for="(channel,i) in channels" :key="i">
-          <button @click="setChannelId(i)">
+          <button @click="setChannelId(i)" style="background: transparent; border-color: transparent;">
             <td style="text-align: center;"><img :src="channel.titleImageUrl" class="img-msg"/></td>
             <td class="channel-element">{{channel.title}}</td>
             <td class="channel-element"> Nuevos mensajes:{{channel.newMessagesCount}}</td>
