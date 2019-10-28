@@ -3,7 +3,7 @@
     <Header
             :title="chatWindowTitle"
             :imageUrl="titleImageUrl"
-            :onClose="onClose"
+            :onClose="onCloseSet"
             :onBack="onBack"
             :colors="colors"
             :chatWindowState="chatWindowState"
@@ -217,6 +217,11 @@
         if(this.chatWindowState==1){
           this.onChannelUnselect()
         }
+      },
+      onCloseSet(){
+        this.chatWindowState=1
+        this.onChannelUnselect()
+        this.onClose()
       }
     }
   }
